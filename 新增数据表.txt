@@ -1,0 +1,16 @@
+USE easymall;
+DROP TABLE IF EXISTS admin;
+CREATE TABLE admin (
+  id int(11) NOT NULL auto_increment,
+  username varchar(20) default NULL,
+  password varchar(40) default NULL,
+  nickname varchar(100) default NULL,
+  email varchar(60) default NULL,
+  PRIMARY KEY  (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+set names utf8;
+
+insert into admin values(null, 'admin', '123', '管理员', 'admin@tedu.com');
+
+select * from admin;

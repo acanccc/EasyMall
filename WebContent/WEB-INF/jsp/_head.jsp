@@ -16,7 +16,9 @@
 		 <c:if test="${ !(empty sessionScope.user) }">
 		 	 	"欢迎${ sessionScope.user.username }回来~~&nbsp;"
 		 	<a href="${ pageContext.request.contextPath }/index/logout">退出</a>		 
-		 </c:if>		
+		 </c:if>
+		 
+		 		<a href="${ pageContext.request.contextPath }/admin/login">&nbsp;&nbsp;后台登录</a>	
 		</div>	
 	</div>
 	<div id="line2">

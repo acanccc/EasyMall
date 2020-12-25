@@ -11,11 +11,29 @@ http://www.springframework.org/schema/mvc
 http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
 
 
-<!-- 使用扫描机制，扫描控制器类 -->
-<context:component-scan base-package="easymall.controller"/>     
+	<!-- 使用扫描机制，扫描控制器类 -->
+	<context:component-scan base-package="easymall.controller"/>     
+
+	<!-- Spring里面的Json解析需要用到Jackson，不配置会无法完成Json解析 -->  
+	<bean id="objectMapper" class="com.fasterxml.jackson.databind.ObjectMapper">
+        <property name="dateFormat">
+            <bean class="java.text.SimpleDateFormat">
+                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />
+            </bean>
+        </property>
+    </bean>
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
+			<bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="objectMapper" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
  
     
-<mvc:annotation-driven />
+	<mvc:annotation-driven />
   <!-- annotation-driven用于简化开发的配置，
     注解DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter -->
     <!-- 使用resources过滤掉不需要dispatcher servlet的资源。
@@ -30,6 +48,8 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd ">
     <mvc:resources location="/img/" mapping="/img/**"></mvc:resources> 
      <!-- 允许uplode目录下所有文件可见 -->             	
      <mvc:resources location="/WEB-INF/upload/" mapping="/upload/**"/>
+     
+     
      
  <!-- 配置视图解析器 -->
   	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

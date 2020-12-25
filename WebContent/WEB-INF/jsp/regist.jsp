@@ -7,53 +7,9 @@
 		<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/regist.css"/>
 		<script  type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-1.4.2.js"></script>
 		<script type="text/javascript">
-			/* 点击图片换一张验证码  */
-			//浏览器只要发现图片的src地址变化，图片就会变化。
-			$(function(){
-
-				
-				$("#img").click(function(){
-					$(this).attr("src","${ pageContext.request.contextPath }/index/valiImage?time="+new Date().getTime());
-				});
-				
-				//给所有输入框添加失去输入焦点的事件  当失去输入焦点时检查输入是否为空或者两次密码是否一致，或者邮箱格式是否正确。
-				$("input[name='username']").blur(function(){
-					if(!formobj.checkNull("username", "用户名不能为空！")){
-						return false;						
-					}else{
-						var url="${ pageContext.request.contextPath }/user/checkUser";
-						var username=$("input[name='username']").val();
-						$.post(url,{"username":username},
-							function(data){
-								$("#username_msg").html(data);
-							}
-						);
-					}
-				});
-				$("input[name='password']").blur(function(){
-					formobj.checkNull("password", "密码不能为空！");	
-					formobj.checkPassword("password","两次密码输入不一致");
-				});
-				$("input[name='password2']").blur(function(){
-					formobj.checkNull("password2", "确认密码不能为空！");		
-					formobj.checkPassword("password","两次密码输入不一致");
-				});
-				$("input[name='nickname']").blur(function(){
-					formobj.checkNull("nickname", "昵称不能为空！");
-				});
-				$("input[name='email']").blur(function(){
-					formobj.checkNull("email", "邮箱不能为空！");
-					formobj.checkEmail("email", "邮箱格式不正确！");
-				});
-				$("input[name='valistr']").blur(function(){
-					formobj.checkNull("valistr", "验证码不能为空！");
-				});
-				
-			});
-			
 			/*注册表单的js校验*/
 			var formobj={
-				"checkForm":function(){
+				"checkForm":function() {
 					//1.非空校验				
 					var res1=this.checkNull("username", "用户名不能为空！");
 					var res2=this.checkNull("password", "密码不能为空！");
@@ -108,9 +64,115 @@
 					}
 					return true;
 				}
+			}
+			
+		
+			// 请求发送验证码
+			function requestSendEmail(obj) { // 发送邮箱验证码的按钮对象
+				var isNotNull = formobj.checkNull("email", "邮箱不能为空！"); // 非空返回true
+				var isEmail = formobj.checkEmail("email", "邮箱格式不正确！");
+				if (isNotNull && isEmail) {
+					// 立马开始倒计时，而不是等到异步请求成功之后才倒计时
+					var timer = countDown(obj);	
+					var email = $("input[name='email']").val();
+					
+					$.ajax({
+						url: '${pageContext.request.contextPath}/sendEmail',
+						type: 'POST',
+						data: {
+							email: email
+						},
+						success: function(res) {
+							console.log(res);
+							if (res.code === 2000) {
+								// 发送成功
+							} else {
+								// 提示错误信息
+								$(obj).siblings('span').html(res.msg);
+							}
+						}
+					});
+				} else {
+					$(obj).attr('disabled',"true");
+				}
+			}
+			
+			// 60s倒计时	
+			function countDown(obj) {
+				// 点击之后立马禁用，防止用户重复多次点击
+				$(obj).attr('disabled', true); 
+				var seconds = 60;
+				$(obj).val(seconds + ' s');
+				var timer = setInterval(function () { // 先等1秒，再执行回调函数
+					seconds--;
+					if (seconds <= 0) {
+						clearInterval(timer);
+						$(obj).val('发送验证码');
+						$(obj).removeAttr("disabled");
+					} else {
+						$(obj).val(seconds + ' s');
+					}
+				}, 1000);
+				return timer;
+			}
+		
+			/* 点击图片换一张验证码  */
+			//浏览器只要发现图片的src地址变化，图片就会变化。
+			$(function(){
+
 				
+				$("#img").click(function(){
+					$(this).attr("src","${ pageContext.request.contextPath }/index/valiImage?time="+new Date().getTime());
+				});
 				
-			};
+				//给所有输入框添加失去输入焦点的事件  当失去输入焦点时检查输入是否为空或者两次密码是否一致，或者邮箱格式是否正确。
+				$("input[name='username']").blur(function(){
+					if(!formobj.checkNull("username", "用户名不能为空！")){
+						return false;						
+					}else{
+						var url="${ pageContext.request.contextPath }/user/checkUser";
+						var username=$("input[name='username']").val();
+						$.post(url,{"username":username},
+							function(data){
+								$("#username_msg").html(data);
+							}
+						);
+					}
+				});
+				
+				// 发送验证码的按钮是否正在倒计时
+				var isCountDown = false;
+				
+				$("input[name='password']").blur(function(){
+					formobj.checkNull("password", "密码不能为空！");	
+					formobj.checkPassword("password","两次密码输入不一致");
+				});
+				$("input[name='password2']").blur(function(){
+					formobj.checkNull("password2", "确认密码不能为空！");		
+					formobj.checkPassword("password","两次密码输入不一致");
+				});
+				$("input[name='nickname']").blur(function(){
+					formobj.checkNull("nickname", "昵称不能为空！");
+				});
+				$("input[name='email']").blur(function(){
+					var isNotNull = formobj.checkNull("email", "邮箱不能为空！"); // 非空返回true
+					var isEmail = formobj.checkEmail("email", "邮箱格式不正确！");
+					if (isNotNull && isEmail) {
+						if (!isCountDown) {
+							$('#sendEmail').removeAttr('disabled');
+						}
+					} else {
+						$('#sendEmail').attr('disabled',"true");
+					}
+				});
+				$("input[name='valistr']").blur(function(){
+					formobj.checkNull("valistr", "验证码不能为空！");
+				});
+				
+			});
+			
+			
+			
 			</script>
 	</head>
 	<body>
@@ -159,16 +221,19 @@
 					<td class="tds">邮箱：</td>
 					<td>
 						<input type="text" name="email" value="${ param.email }"/>
-						<span></span>
+						<input type="button" id="sendEmail" disabled value="发送验证码"
+							onClick="requestSendEmail(this)" style="width:84px;" />
+						<span style="color: red;"></span>
 					</td>
 				</tr>
 				<tr>
 					<td class="tds">验证码：</td>
 					<td>
 						<input  type="text" name="valistr" value=""/>
-						
+						<!--  
 						<img id="img"  src="${ pageContext.request.contextPath }/index/valiImage"/>
 						<span></span>
+						-->
 					</td>
 				</tr>
 				<tr>

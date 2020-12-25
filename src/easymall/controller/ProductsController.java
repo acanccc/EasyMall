@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import easymall.po.Products;
 import easymall.service.ProductsService;
@@ -71,8 +70,8 @@ public class ProductsController {
 	{
 		List<Products> products=productsService.proclass(proclass);
 		model.addAttribute("products", products);
-		
-		return "forward:/WEB-INF/jsp/prod_list.jsp";
+		//return "forward:/WEB-INF/jsp/prod_list.jsp";
+		return "prod_list";
 	}
 	
 	

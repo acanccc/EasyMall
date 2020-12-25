@@ -11,7 +11,7 @@
 	<div id="content">
 		<div id="search_div">
 			<form method="post" action="${pageContext.request.contextPath}/prodlist">
-				<span class="input_span">商品名：<input type="text" name="name"/>${name}</span>
+				<span class="input_span">商品名：<input type="text" name="name" value="${name}"/></span>
 				<span class="input_span">商品种类：</span>
 				<select name="category">
 					<option value="">不限</option>

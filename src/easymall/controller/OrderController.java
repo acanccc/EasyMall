@@ -60,7 +60,7 @@ public class OrderController extends BaseController {
 		Timestamp timestamp=Timestamp.valueOf(time);
 		User user=(User)session.getAttribute("user");
 		String orderId=UUID.randomUUID().toString();
-		Orders myOrder=new Orders(orderId,null,receiverinfo,0,timestamp,user.getId());
+		Orders myOrder=new Orders(orderId,null,receiverinfo,0,timestamp,user.getId(),user.getUsername());
 		orderService.addOrder(cartIds,myOrder);
 		return "forward:/order/showorder";
 	}

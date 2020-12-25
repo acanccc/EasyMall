@@ -19,5 +19,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
          <mapper resource="easymall/mybatis/CartMapper.xml"/>
          <mapper resource="easymall/mybatis/OrderItemMapper.xml"/>
          <mapper resource="easymall/mybatis/OrderMapper.xml"/>
+          <mapper resource="easymall/mybatis/AdminMapper.xml"/>
  	</mappers>
 </configuration>

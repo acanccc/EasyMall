@@ -13,4 +13,7 @@ public interface OrderService {
 	public List<OrderItem> orderitem(String order_id);
 	public void delorder(String id);
 	public void payorder(String id);
+	public void sendorder(String id);
+	
+	public List<Orders> findAllOrder();
 }

@@ -49,3 +49,19 @@ ul li{list-style:none;}
 	text-align:center;
 	margin: 50px 0px;
 }
+
+#total_2 a{
+	float:right;
+	width:123px;
+	height:47px;
+	line-height:47px;
+	text-align: center;
+	text-decoration:none;
+	background-color: #D9141E;
+	color: #FFF;
+	font-weight:bold;
+	font-size:24px;
+}
+#total_2 a:hover{
+	background-color: #DD4343;
+}

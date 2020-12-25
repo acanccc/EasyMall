@@ -74,4 +74,16 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.payorder(id);
 	}
 
+	@Override
+	public List<Orders> findAllOrder() {
+		// TODO Auto-generated method stub
+		return orderDao.findAllOrder();
+	}
+
+	@Override
+	public void sendorder(String id) {
+		// TODO Auto-generated method stub
+		orderDao.sendorder(id);
+	}
+
 }

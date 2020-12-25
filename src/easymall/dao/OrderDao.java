@@ -14,4 +14,6 @@ public interface OrderDao {
 	List<Orders> findOrderByUserId(Integer user_id);
 	void delorder(String id);
 	void payorder(String id);
+	List<Orders> findAllOrder();
+	void sendorder(String id);
 }

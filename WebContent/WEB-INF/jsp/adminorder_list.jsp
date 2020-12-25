@@ -5,9 +5,10 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 	<link href="${ pageContext.request.contextPath }/css/orderList.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-<%@ include file = "_head.jsp" %>
+<%@ include file = "adminhead.jsp" %>
 	<div id="no_order_info">
 	<c:if test="${empty orderInfos }">
 		您还没有添加任何订单！
@@ -30,23 +31,12 @@
 				支付状态：
 				<c:if test="${orderInfo.order.paystate==0}">
 						<font color="red">未支付</font>&nbsp;&nbsp;
-						<a href="${ pageContext.request.contextPath }/order/delorder?id=${orderInfo.order.id}">
-							<img src="${ pageContext.request.contextPath }/img/orderList/sc.jpg" width="69" height="19"/>
-						</a>
-						&nbsp;
-				 		<a href="${ pageContext.request.contextPath }/order/payorder?id=${orderInfo.order.id}"> 
-					 		<img src="${ pageContext.request.contextPath }/img/orderList/zx.jpg" width="69" height="19">
-						</a>
 						</c:if>
 						<c:if test="${orderInfo.order.paystate==1}">
-						<font color="#3CB371">已支付,等待商家发货</font>&nbsp;
-						
+						<font color="#3CB371">已支付</font>&nbsp;
 						</c:if>
 						<c:if test="${orderInfo.order.paystate==2}">
-						<font color="blue">商家已发货,待签收</font>&nbsp;
-						<a> 
-					 		确认收货
-						</a>
+						<font color="blue">已发货</font>&nbsp;
 						</c:if>
 						
 						<br /> 
@@ -79,8 +69,12 @@
 			</tr>
 			</c:forEach>
 		</table>
-		<div class="Order_price">${orderInfo.order.money}元</div>
-	</div>
+		<c:if test="${orderInfo.order.paystate==1}">
+				<div id="total_2" >	
+					<a href="${pageContext.request.contextPath }/admin/sendorder?id=${orderInfo.order.id}">立即发货</a>
+				</div>
+			</c:if>
+		<div style="height:47px;">	</div>
 	</c:forEach>
 
 	<!-- 模版数据 -end -->

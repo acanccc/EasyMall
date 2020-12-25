@@ -14,3 +14,23 @@ set names utf8;
 insert into admin values(null, 'admin', '123', '管理员', 'admin@tedu.com');
 
 select * from admin;
+
+
+DROP TABLE IF EXISTS orders;
+CREATE TABLE orders (
+  id varchar(100) NOT NULL,
+  money double,
+  receiverinfo varchar(255) default NULL,
+  paystate int(11) default NULL,
+  ordertime timestamp NOT NULL ,
+  user_id int(11) default NULL,
+username varchar(20) default NULL,
+  PRIMARY KEY  (id),
+  KEY user_id (user_id),
+  CONSTRAINT orders_ibfk_1 FOREIGN KEY (user_id) REFERENCES user (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+Insert into orders values('a01',3000,'华南师范大学南海校区',0,'2019-10-20',1,'aa');
+
+
+select * from orders;

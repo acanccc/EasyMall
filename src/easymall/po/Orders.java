@@ -9,20 +9,7 @@ public class Orders {
 	private Integer paystate;
 	private Timestamp ordertime ;
 	private Integer user_id;
-	public Orders() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Orders(String id, Double money, String receiverinfo, Integer paystate, Timestamp ordertime,
-			Integer user_id) {
-		super();
-		this.id = id;
-		this.money = money;
-		this.receiverinfo = receiverinfo;
-		this.paystate = paystate;
-		this.ordertime = ordertime;
-		this.user_id = user_id;
-	}
+	private String username;
 	public String getId() {
 		return id;
 	}
@@ -59,6 +46,28 @@ public class Orders {
 	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public Orders(String id, Double money, String receiverinfo, Integer paystate, Timestamp ordertime, Integer user_id,
+			String username) {
+		super();
+		this.id = id;
+		this.money = money;
+		this.receiverinfo = receiverinfo;
+		this.paystate = paystate;
+		this.ordertime = ordertime;
+		this.user_id = user_id;
+		this.username = username;
+	}
+	public Orders() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 }

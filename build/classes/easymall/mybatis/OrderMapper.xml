@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="easymall.dao.OrderDao">
 <insert id="addOrder" parameterType="easymall.po.Orders">
-    insert into Orders(id,money,receiverinfo,paystate,ordertime,user_id)
-    	values(#{id},#{money},#{receiverinfo},#{paystate},#{ordertime},#{user_id})
+    insert into Orders(id,money,receiverinfo,paystate,ordertime,user_id,username)
+    	values(#{id},#{money},#{receiverinfo},#{paystate},#{ordertime},#{user_id},#{username})
     
 </insert>
 <select id="findOrderByUserId" parameterType="Integer" resultType="easymall.po.Orders">
@@ -18,4 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <update id="payorder" parameterType="String">
     update orders set paystate=1 where id=#{id}
 </update>
+<update id="sendorder" parameterType="String">
+    update orders set paystate=2 where id=#{id}
+</update>
+<select id="findAllOrder" resultType="easymall.po.Orders">
+    select * from orders ;
+</select>
 </mapper>

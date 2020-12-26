@@ -12,6 +12,7 @@ import easymall.dao.OrderItemDao;
 import easymall.po.OrderItem;
 import easymall.po.Orders;
 import easymall.pojo.MyCart;
+import easymall.pojo.OrderItemInfoRspVo;
 
 @Service("orderService")
 @Transactional
@@ -23,7 +24,23 @@ public class OrderServiceImpl implements OrderService {
 	private OrderItemDao orderItemDao;
 	@Autowired
 	private OrderDao orderDao;
-	
+
+	/**
+	 * 查询我的所有订单信息
+	 */
+	@Override
+	public List<Orders> getMyAllOrders(Integer userId) {
+		// 查询处当前用户的所有订单，暂不考虑分页
+		List<Orders> myOrderList = orderDao.findOrderByUserId(userId);
+		
+		for (Orders order : myOrderList) {
+			// 查询出该订单的所有商品信息
+			List<OrderItemInfoRspVo> itemList = orderItemDao.selectOrderItems(order.getId());
+			order.setItemList(itemList);
+		}
+		
+		return myOrderList;
+	}
 	
 
 	@Override
@@ -85,5 +102,6 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		orderDao.sendorder(id);
 	}
+
 
 }

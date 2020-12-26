@@ -5,6 +5,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="easymall.dao.OrderItemDao">
 
+
+<!-- 查询某个订单中的商品信息 -->
+  <select id="selectOrderItems" parameterType="String" 
+  	resultType="easymall.pojo.OrderItemInfoRspVo">
+  	select 	
+  		p.id prodId,
+  		p.name prodName,
+  		p.price,
+  		p.imgurl imgUrl,
+  		oi.buynum buyNum
+  	from orderitem oi, products p
+  	where oi.order_id=#{orderId} and oi.product_id=p.id;
+  </select>
+
+
 <insert id="addOrderItem" parameterType="easymall.po.OrderItem">
     insert into OrderItem(order_id,product_id,buynum)
     	value(#{order_id},#{product_id},#{buynum})
@@ -16,4 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <delete id="delorderitem" parameterType="String">
     delete from orderitem where order_id=#{id}
 </delete>
+
+
 </mapper>

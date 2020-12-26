@@ -10,6 +10,7 @@ import easymall.po.Orders;
 @Repository("orderDao")
 @Mapper
 public interface OrderDao {
+	
 	void addOrder(Orders myOrder);
 	List<Orders> findOrderByUserId(Integer user_id);
 	void delorder(String id);

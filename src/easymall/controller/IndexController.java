@@ -17,7 +17,7 @@ public class IndexController  {
 	 * 
 	 * @return
 	 */
-	@GetMapping({"/", "/index"})
+	@GetMapping({"/", "/index", "/index/index"})
 	public String index() {
 		return "index";
 	}
@@ -29,7 +29,7 @@ public class IndexController  {
 	@RequestMapping("/index/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/index/index";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping("/index/regist")

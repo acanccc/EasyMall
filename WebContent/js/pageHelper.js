@@ -66,7 +66,8 @@ function pageHelper(API_URL, curPage, total, count, sideBtnCount, urlParamsStr) 
      * @param contentHtml   按钮中的内容
      */
     function clickableBtn(contentHtml, num) {
-        return  `<a href='${API_URL}?page=${num}${urlParamsStr}'>${contentHtml}</a>`;
+        //return  `<a href='${API_URL}?page=${num}${urlParamsStr}'>${contentHtml}</a>`;
+		return  "<a href='" + API_URL + "?page=" + num + urlParamsStr + "'>" + contentHtml + "</a>";
     }
 
     /**
@@ -74,7 +75,8 @@ function pageHelper(API_URL, curPage, total, count, sideBtnCount, urlParamsStr) 
      * @param contentHtml
      */
     function currentBtn(contentHtml) {
-        return  `<span>${contentHtml}</span>`;
+        //return  `<span>${contentHtml}</span>`;
+		return  "<span>" + contentHtml + "</span>";
     }
 
     /**

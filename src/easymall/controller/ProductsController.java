@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -88,6 +86,7 @@ public class ProductsController {
 		return "prod_info";
 	}
 	
+	/*
 	@RequestMapping(value = "/prodclass/{proclass}",method = RequestMethod.GET)
 	public String prodclass(@PathVariable String proclass,Model model)
 	{
@@ -96,6 +95,7 @@ public class ProductsController {
 		//return "forward:/WEB-INF/jsp/prod_list.jsp";
 		return "prod_list";
 	}
+	*/
 	
 	
 }

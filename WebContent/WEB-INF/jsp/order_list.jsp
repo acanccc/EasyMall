@@ -27,13 +27,12 @@
 		<div id="no_order_info">
 		您还没有添加任何订单！
 		</div>
+		<div style="margin: 12px 0;" class="clearfix">
+			<a href="${ pageContext.request.contextPath }/order/export">
+				<input type="button" value="导出为Excel" class="float-right" />
+			</a>
+		</div>
 	</c:if>
-	
-	<div style="margin: 12px 0;" class="clearfix">
-		<a href="${ pageContext.request.contextPath }/order/export">
-			<input type="button" value="导出为Excel" class="float-right" />
-		</a>
-	</div>
 	
 	<!-- 模版数据 -start -->
 	<c:forEach items="${myAllOrders }" var="orderInfo">

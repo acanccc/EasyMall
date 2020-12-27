@@ -1,13 +1,13 @@
 package easymall.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import easymall.dao.ProductsDao;
 import easymall.po.Products;
+import easymall.pojo.ProdListReqParamsVo;
 
 @Service("productsService")
 public class ProductsServiceImpl implements ProductsService {
@@ -23,13 +23,6 @@ public class ProductsServiceImpl implements ProductsService {
 	}
 
 	@Override
-	public List<Products> prodlist(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		List<Products> products=productsDao.prodlist(map);
-		return products;
-	}
-
-	@Override
 	public Products oneProduct(String pid) {
 		return productsDao.oneProduct(pid);
 	}
@@ -37,6 +30,12 @@ public class ProductsServiceImpl implements ProductsService {
 	@Override
 	public List<Products> proclass(String proclass) {
 		return productsDao.proclass(proclass);
+	}
+
+	// 多条件查询商品列表
+	@Override
+	public List<Products> getProdListByConds(ProdListReqParamsVo params) {
+		return productsDao.selectProdsByConds(params);
 	}
 
 }

@@ -1,13 +1,17 @@
 package easymall.service;
 
 import java.util.List;
-import java.util.Map;
 
 import easymall.po.Products;
+import easymall.pojo.ProdListReqParamsVo;
 
 public interface ProductsService {
 	public List<String> allcategorys();
-	public List<Products> prodlist(Map<String,Object> map);
+	
+	// 根据多条件检索商品
+	public List<Products> getProdListByConds(ProdListReqParamsVo params);
+	
+	//public List<Products> prodlist(Map<String,Object> map);
 
 	public Products oneProduct(String pid);
 

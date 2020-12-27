@@ -7,7 +7,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="allcategorys" resultType="String">
         select distinct(category) from products
     </select>
+    
+  <!-- 根据多条件检索商品 -->
+  <select id="selectProdsByConds" parameterType="easymall.pojo.ProdListReqParamsVo" resultType="easymall.po.Products">
+  	 select * from products
+  	 <where>
+  	 	<if test="prodName!=null and prodName!=''">
+  	 		<!-- mybatis提供了<bind>标签来解决不同数据库模糊查询不同的问题，建议使用bind -->
+  	 		<bind name="prod_name" value="'%' + prodName + '%'" />
+  	 		and name like #{prod_name}
+  	 	</if>
+  	 	<if test="cate!=null and cate!=''">
+  	 		and category=#{cate}
+  	 	</if>
+  	 	<if test="minPrice!=null">
+  	 		and price&gt;=#{minPrice}
+  	 	</if>
+  	 	<if test="maxPrice!=null">
+  	 		and #{maxPrice} &gt;= price
+  	 	</if>
+  	 </where>
+  		
+  </select>
+    
 
+<!--  
   <select id="prodlist" resultType="easymall.po.Products" parameterType="map">
        select * from products where(price between #{minprice} and #{maxprice})
        <if test="name!=null and name!=''">
@@ -17,6 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
            and category=#{category}
        </if>
     </select>
+-->
     
   <select id="oneProduct" parameterType="String" resultType="easymall.po.Products">
       select * from products where id=#{pid}

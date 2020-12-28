@@ -57,7 +57,7 @@ public class AdminController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/index.jsp";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping("/showorder")

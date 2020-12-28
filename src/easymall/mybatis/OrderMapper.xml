@@ -24,4 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="findAllOrder" resultType="easymall.po.Orders">
     select * from orders ;
 </select>
+<update id="receiveorder" parameterType="String">
+    update orders set paystate=3 where id=#{id}
+</update>
 </mapper>

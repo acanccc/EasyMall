@@ -104,4 +104,11 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
+	@Override
+	public void receiveorder(String id) {
+		// TODO Auto-generated method stub
+		orderDao.receiveorder(id);
+	}
+
+
 }

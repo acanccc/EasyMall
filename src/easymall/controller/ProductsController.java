@@ -7,11 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import easymall.po.Category;
 import easymall.po.Products;
 import easymall.pojo.ProdListReqParamsVo;
 import easymall.service.ProductsService;
@@ -55,7 +58,7 @@ public class ProductsController {
 		}
 		
 		// 查询所有分类
-		List<String> cates = productsService.allcategorys();
+		List<Category> cates = productsService.allcategorys();
 		
 		// 调用PageHelper进行分页
 		// 紧跟在这个方法后的第一个MyBatis 查询方法会被进行分页
@@ -86,16 +89,15 @@ public class ProductsController {
 		return "prod_info";
 	}
 	
-	/*
+	
 	@RequestMapping(value = "/prodclass/{proclass}",method = RequestMethod.GET)
-	public String prodclass(@PathVariable String proclass,Model model)
+	public String prodclass(@PathVariable Integer proclass,Model model)
 	{
 		List<Products> products=productsService.proclass(proclass);
 		model.addAttribute("products", products);
 		//return "forward:/WEB-INF/jsp/prod_list.jsp";
-		return "prod_list";
+		return "forward:/WEB-INF/jsp/prod_list.jsp";
 	}
-	*/
 	
 	
 }

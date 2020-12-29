@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import easymall.dao.ProductsDao;
+import easymall.po.Category;
 import easymall.po.Products;
 import easymall.pojo.ProdListReqParamsVo;
 
@@ -16,9 +17,9 @@ public class ProductsServiceImpl implements ProductsService {
 	private ProductsDao productsDao;
 	
 	@Override
-	public List<String> allcategorys() {
+	public List<Category> allcategorys() {
 		// TODO Auto-generated method stub
-		List<String> categorys=productsDao.allcategorys();
+		List<Category> categorys=productsDao.allcategorys();
 		return categorys;
 	}
 
@@ -28,7 +29,7 @@ public class ProductsServiceImpl implements ProductsService {
 	}
 
 	@Override
-	public List<Products> proclass(String proclass) {
+	public List<Products> proclass(Integer proclass) {
 		return productsDao.proclass(proclass);
 	}
 

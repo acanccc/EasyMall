@@ -25,7 +25,7 @@
 				<select name="cate">
 					<option value="">不限</option>
 					<c:forEach items="${cates}" var="cate">
-						<option value="${cate}" <c:if test="${cate==params.cate}">selected</c:if>>${cate}</option>
+						<option value="${cate.id}">${cate.name } <c:if test="${cate==params.cate}">selected</c:if>>${cate}</option>
 					</c:forEach>
 
 				</select>

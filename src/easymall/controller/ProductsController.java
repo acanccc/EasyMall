@@ -26,7 +26,7 @@ public class ProductsController {
 	 * 该接口必须支持post和get方式访问
 	 * 因为表单提交是post方式，而第一次打开页面和点击页码切换页面都是get方式
 	 * 
-	 * @param page	当前页。分页所需参数，如果前端不传，则默认为1
+	 * @param page		当前页。分页所需参数，如果前端不传，则默认为1
 	 * @param count		每页显示多少条记录。分页所需参数，如果前端不传，则默认为2
 	 */
 	@RequestMapping("/prodlist") 

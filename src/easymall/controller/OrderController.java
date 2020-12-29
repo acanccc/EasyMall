@@ -28,6 +28,7 @@ import easymall.common.CloseUtils;
 import easymall.po.Orders;
 import easymall.po.User;
 import easymall.pojo.MyCart;
+import easymall.pojo.OrderItemInfoRspVo;
 import easymall.service.CartService;
 import easymall.service.OrderService;
 import easymall.service.ProductsService;
@@ -87,22 +88,21 @@ public class OrderController extends BaseController {
 	@GetMapping("/export")
 	public void export(HttpSession session, HttpServletRequest request, 
 			HttpServletResponse response) throws FileNotFoundException {
-		System.out.println("------------???????");
 		User user = (User) session.getAttribute("user");
+		
 		// 获取我的所有订单信息
 		List<Orders> myAllOrders = orderService.getMyAllOrders(user.getId());
-		//String realPath = request.getServletContext().getRealPath("/WEB-INF/");
+		
+		String realPath = request.getServletContext().getRealPath("/WEB-INF/");
 		// 替换图片路径
 		// 路径中不能有"."，否则会报错。这是easypoi框架本身的问题
-		/*
 		for (Orders order : myAllOrders) {
 			List<OrderItemInfoRspVo> itemList = order.getItemList();
 			for (OrderItemInfoRspVo item: itemList) {
 				//System.out.println(realPath + item.getImgUrl().substring(1));
-				item.setImgUrl("D:/" + item.getImgUrl().substring(1));
+				item.setImgUrl(realPath + item.getImgUrl().substring(1));
 			}
 		}
-		*/
 		
 		ExportParams exportParams = new ExportParams("我的订单列表", "订单列表");
 		// org.apache.poi.ss.usermodel.Workbook
@@ -114,8 +114,9 @@ public class OrderController extends BaseController {
 			fileName = URLEncoder.encode(fileName, "UTF-8");  // 防止文件名中文乱码
 			outStream = response.getOutputStream();
 			
-			// setHeader("Content-Type", "application/octet-stream");
-			response.setContentType("application/octet-stream");
+			// application/octet-stream  application/vnd.ms-excel
+			// Content-Type标头告诉客户端实际返回的内容的内容类型，浏览器会在某些情况下进行MIME查找
+			response.setContentType("application/vnd.ms-excel");
 			response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
 						
 			workbook.write(outStream);

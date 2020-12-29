@@ -12,11 +12,13 @@
   	<param-name>contextConfigLocation</param-name>
   	<param-value>classpath:applicationContext.xml</param-value>
   </context-param>
-  <!-- 指定一ContextLoaderListener方式启动Spring容器 -->
   
+  <!-- 指定一ContextLoaderListener方式启动Spring容器
+  org.springframework.web.context.ContextLoaderListener
+   -->
   <listener>
   	<listener-class>
-  		org.springframework.web.context.ContextLoaderListener
+  		easymall.component.MyContextLoaderListener
   	</listener-class>
   </listener>
   

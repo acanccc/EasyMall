@@ -2,6 +2,13 @@
 <!DOCTYPE HTML>
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/head.css"/>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+
+<script>
+	function encodeURL(str) {
+		return encodeURI(str);
+	}
+</script>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="common_head">
 	<div id="line1">

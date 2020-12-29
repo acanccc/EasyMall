@@ -1,5 +1,9 @@
 package easymall.pojo;
 
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.springframework.util.ObjectUtils;
 
 /**
@@ -31,7 +35,14 @@ public class ProdListReqParamsVo {
 			urlParamsStr.append("&prodName=").append(prodName);
 		}
 		if (cate != null) {
-			urlParamsStr.append("&cate=").append(cate);
+			String cateTmp = cate;
+			try {
+				// 对中文进行url编码
+				cateTmp = URLEncoder.encode(cate, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			urlParamsStr.append("&cate=").append(cateTmp);
 		}
 		if (!ObjectUtils.isEmpty(minPrice)) {
 			urlParamsStr.append("&minPrice=").append(minPrice);

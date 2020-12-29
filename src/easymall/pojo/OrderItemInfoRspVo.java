@@ -26,7 +26,7 @@ public class OrderItemInfoRspVo implements Serializable {
 	// 商品封面图
 	// type =2 该字段类型为图片,imageType=1 (默认可以不填),表示从file读取
 	// 字段类型是个字符串类型 可以用相对路径也可以用绝对路径,绝对路径优先依次获取
-	@Excel(name = "商品主图", type = 2, width = 16, orderNum = "1")
+	@Excel(name = "商品主图", type = 2, width = 12, orderNum = "1")
 	private String imgUrl;
 	
 	// 商品单价

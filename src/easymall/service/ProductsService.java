@@ -2,11 +2,12 @@ package easymall.service;
 
 import java.util.List;
 
+import easymall.po.Category;
 import easymall.po.Products;
 import easymall.pojo.ProdListReqParamsVo;
 
 public interface ProductsService {
-	public List<String> allcategorys();
+	public List<Category> allcategorys();
 	
 	// 根据多条件检索商品
 	public List<Products> getProdListByConds(ProdListReqParamsVo params);
@@ -15,5 +16,5 @@ public interface ProductsService {
 
 	public Products oneProduct(String pid);
 
-	public List<Products> proclass(String proclass);
+	public List<Products> proclass(Integer proclass);
 }

@@ -38,6 +38,9 @@
 						<c:if test="${orderInfo.order.paystate==2}">
 						<font color="blue">已发货</font>&nbsp;
 						</c:if>
+							<c:if test="${orderInfo.order.paystate==3}">
+						<font color="blue">已签收</font>&nbsp;
+						</c:if>
 						
 						<br /> 
 				所属用户：${orderInfo.order.username }

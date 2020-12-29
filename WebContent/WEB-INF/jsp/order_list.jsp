@@ -64,16 +64,23 @@
 						<font color="#3CB371">已支付,等待商家发货</font>&nbsp;
 					</c:if>
 					<c:if test="${orderInfo.paystate==2}">
-						<font color="blue">商家已发货,待签收</font>&nbsp;
-						<a> 
-					 		确认收货
+						商家已发货,待签收&nbsp;
+						<a href="${ pageContext.request.contextPath }/order/receiveorder?id=${orderInfo.id}"> 
+					 		<font color="red">确认收货</font>
 						</a>
+					</c:if>
+					<c:if test="${orderInfo.paystate==3}">
+						<font color="blue">签收成功！</font>&nbsp;
+						
 					</c:if>
 						
 						<br /> 
 				所属用户：${orderInfo.username }
 				<br/> 
-				收货地址：${orderInfo.receiverinfo}
+				收货地址：${orderInfo.receiverinfo}   
+				   <a href="${ pageContext.request.contextPath }/order/maporder?address=${orderInfo.receiverinfo}"> 
+					 		<font color="blue">查看地图</font>
+						</a>
 				<br/> 
 				支付方式：在线支付
 			</dd>

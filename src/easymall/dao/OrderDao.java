@@ -17,4 +17,5 @@ public interface OrderDao {
 	void payorder(String id);
 	List<Orders> findAllOrder();
 	void sendorder(String id);
+	void receiveorder(String id);
 }

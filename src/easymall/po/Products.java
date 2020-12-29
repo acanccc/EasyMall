@@ -4,7 +4,7 @@ public class Products {
 	private String id;
 	private String name;
 	private Double price;
-	private String category;
+	private Integer category;
 	private Integer pnum;
 	private String imgurl;
 	private String description;
@@ -26,10 +26,10 @@ public class Products {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	public String getCategory() {
+	public Integer getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(Integer category) {
 		this.category = category;
 	}
 	public Integer getPnum() {

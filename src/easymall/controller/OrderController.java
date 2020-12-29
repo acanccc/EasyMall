@@ -170,5 +170,17 @@ public class OrderController extends BaseController {
 		orderService.payorder(id);
 		return "redirect:/order/showorder";
 	}
+	@RequestMapping("/receiveorder")
+	public String receiveorder(String id,Model model) {
+		
+		orderService.receiveorder(id);
+		return "redirect:/order/showorder";
+	}
+	@RequestMapping("/maporder")
+	public String maporder(String address,Model model) {
+		
+		model.addAttribute("address", address);
+		return "map";
+	}
 	
 }

@@ -26,7 +26,7 @@
 	<div id="line3">
 		<div id="content">
 			<ul >
-				<li style="width:200px;"><a href="#">商品管理</a></li>
+				<li style="width:200px;"><a href="${ pageContext.request.contextPath }/admin/addprod">商品管理</a></li>
 				<li style="width:200px;"><a href="#">商品类别管理</a></li>
 				<li style="width:200px;"><a href="${pageContext.request.contextPath }/admin/showorder">订单管理</a></li>
 				<li style="width:200px;"><a href="#">销售榜单</a></li>

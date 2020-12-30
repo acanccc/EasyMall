@@ -2,8 +2,11 @@ package easymall.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import easymall.po.Category;
 import easymall.po.Products;
+import easymall.pojo.MyProducts;
 import easymall.pojo.ProdListReqParamsVo;
 
 public interface ProductsService {
@@ -17,4 +20,7 @@ public interface ProductsService {
 	public Products oneProduct(String pid);
 
 	public List<Products> proclass(Integer proclass);
+	
+	public String save(MyProducts myproducts,HttpServletRequest request);
+	
 }

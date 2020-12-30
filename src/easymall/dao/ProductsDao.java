@@ -22,5 +22,9 @@ public interface ProductsDao {
 	public Products oneProduct(String pid);
 
 	public List<Products> proclass(Integer category);
+	
+	public void save(Products products);
+	
+	public Object findByImgurl(String imgurl);
 
 }

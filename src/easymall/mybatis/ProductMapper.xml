@@ -53,5 +53,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       select * from products where category=#{category}
       
   </select>
+  
+  <insert id="save" parameterType="easymall.po.Products">
+		insert into products(id,name,price,category,pnum,imgurl,description)
+			values(#{id},#{name},#{price},#{category},#{pnum},#{imgurl},#{description})
+	</insert>
+	<select id="findByImgurl" parameterType="String" resultType="easymall.po.Products">
+		select * from products where imgurl=#{imgurl}
+	</select>
     
 </mapper>

@@ -25,6 +25,7 @@ import easymall.pojo.MyProducts;
 import easymall.pojo.OrderInfo;
 import easymall.service.AdminService;
 import easymall.service.CartService;
+import easymall.service.CategoryService;
 import easymall.service.OrderService;
 import easymall.service.ProductsService;
 import easymall.service.UserService;
@@ -39,7 +40,8 @@ public class AdminController {
 	private OrderService orderService;
 	@Autowired
 	private ProductsService productsService;
-	
+	@Autowired
+	private CategoryService categoryService;
 	@RequestMapping("/login")
 	public String login() {
 		return "adminlogin";

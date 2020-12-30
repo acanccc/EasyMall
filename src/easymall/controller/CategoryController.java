@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import easymall.po.Category;
+import easymall.pojo.Kind;
 import easymall.service.CategoryService;
 
 @Controller("categoryController")
@@ -48,7 +49,9 @@ public class CategoryController {
 	@RequestMapping("/showcategory")
 	public String showcategory(HttpSession session,Model model){
 		List<Category> categorys=categoryService.findAllCategorys();
+		List<Kind> kinds=categoryService.findKind();
 		model.addAttribute("categorys",categorys);
+		model.addAttribute("kinds", kinds);
 		return "category";
 	}
 }

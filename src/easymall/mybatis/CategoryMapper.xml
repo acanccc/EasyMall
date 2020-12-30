@@ -24,4 +24,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findcategoryIdByName" parameterType="String" resultType="Integer">
 		select id from category where name=#{name}
 	</select>
+	<select id="findKind" resultType="easymall.pojo.Kind">
+		select products.category as id,count(*) as knum,category.name as name from category,products
+    	where category.id=products.category 
+    	group by products.category;
+	</select>
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import easymall.dao.CategoryDao;
 import easymall.po.Category;
+import easymall.pojo.Kind;
 
 @Service("categoryService")
 public class CategoryServiceImpl implements CategoryService{
@@ -42,6 +43,12 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public Integer findcategoryIdByName(String name) {
 		return categoryDao.findcategoryIdByName(name);
+	}
+
+	@Override
+	public List<Kind> findKind() {
+		List<Kind> kinds=categoryDao.findKind();
+		return kinds;
 	}
 
 }

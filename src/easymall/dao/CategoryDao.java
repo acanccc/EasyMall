@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+
 import easymall.po.Category;
+import easymall.pojo.Kind;
 
 @Repository("categoryDao")
 @Mapper
@@ -17,4 +19,5 @@ public interface CategoryDao {
 	void updatecategory(Category category);
 	Category findcategory(String name);
 	Integer findcategoryIdByName(String name);
+	List<Kind> findKind();
 }

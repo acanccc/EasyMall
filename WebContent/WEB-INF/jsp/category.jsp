@@ -4,10 +4,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
-	<script rel="stylesheet" href="${pageContext.request.contextPath}/css/category.css"/>
-	<script rel="stylesheet" href="${pageContext.request.contextPath}/js/echarts.js"/>
-	<title>商品种类添加</title>
+	<script rel="stylesheet" href="${pageContext.request.contextPath}/css/category.css"></script>
+	<script src="${ pageContext.request.contextPath }/js/echarts.js"></script>
 	<script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-1.4.2.js"></script>
+	<title>商品种类添加</title>
+	
 	<script>
 		function deleteC(){
 			var id=form1.id.value;
@@ -15,7 +16,6 @@
 		}
 		
 	</script>
-	
 </head>
 <body>
 	<!-- 将头部包含进来 -->
@@ -69,6 +69,52 @@
 		</tr>
 		</table>
 	</div>
-	
+	<div id="chart" style="width:800px;height:300px;margin:0 auto;text-align:center;"></div>
+	<div id="chart2" style="width:800px;height:300px;margin:0 auto;text-align:center;"></div>
+	<script type="text/javascript">
+		var myChart=echarts.init(document.getElementById('chart'));
+		var knum=[];
+		var kname=[];
+		<c:forEach items="${kinds}" var="k">
+			knum.push(${k.knum});
+			kname.push("${k.name}");
+		</c:forEach>
+		var options={
+			title:{
+				text:'各商品类别拥有的商品种类数柱状图'
+			},
+			xAxis:{
+				data:kname,
+				name:'商品类别'
+			},
+			yAxis:{},
+			series:[{
+				name:'商品种类数',
+				type:'bar',
+				data:knum
+			}]
+		};
+		myChart.setOption(options);
+	</script>
+	<script type="text/javascript">
+		var myChart=echarts.init(document.getElementById('chart2'));
+		var data1=[];
+		var data2=new Array();
+		<c:forEach items="${kinds}" var="k">
+			data1.push({value:${k.knum},name:"${k.name}"});
+		</c:forEach>
+		var options2={
+			title:{
+				text:'各商品类别拥有的商品种类数饼图'
+			},
+			series:[{
+				name:'商品类别',
+				type:'pie',
+				data:data1
+			}]
+		};
+		console.log(data1);
+		myChart.setOption(options2);
+	</script>
 </body>
 </html>

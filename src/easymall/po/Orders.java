@@ -22,7 +22,7 @@ public class Orders implements Serializable {
 	@Excel(name = "收货信息", orderNum = "2", needMerge = true)
 	private String receiverinfo;
 	
-	@Excel(name = "订单状态", orderNum = "3", replace = { "未支付_0", "已支付，待发货_1" }, needMerge = true)
+	@Excel(name = "订单状态", orderNum = "3", replace = { "未支付_0", "已支付，待发货_1", "已发货，待签收_2", "已签收_3" }, needMerge = true)
 	private Integer paystate;
 	
 	@Excel(name = "下单时间", orderNum = "4", format = "yyyy-MM-dd HH:mm:ss", needMerge = true)

@@ -17,11 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	 		<bind name="prod_name" value="'%' + prodName + '%'" />
   	 		and name like #{prod_name}
   	 	</if>
-  	 	<if test="cate!=null and cate!=''">
-  	 		and category=#{cate}
+  	 	<if test="cateId!=null and cateId>0">
+  	 		and category=#{cateId}
   	 	</if>
   	 	<if test="minPrice!=null">
-  	 		and price&gt;=#{minPrice}
+  	 		and price &gt;= #{minPrice}
   	 	</if>
   	 	<if test="maxPrice!=null">
   	 		and #{maxPrice} &gt;= price

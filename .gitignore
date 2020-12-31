@@ -1,3 +1,4 @@
 build/
 .setting
 
+src/applicationContext.xml

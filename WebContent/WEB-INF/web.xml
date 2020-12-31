@@ -14,7 +14,8 @@
   </context-param>
   
   <!-- 指定一ContextLoaderListener方式启动Spring容器
-  org.springframework.web.context.ContextLoaderListener
+  原本：org.springframework.web.context.ContextLoaderListener
+  修改后：easymall.component.MyContextLoaderListener
    -->
   <listener>
   	<listener-class>

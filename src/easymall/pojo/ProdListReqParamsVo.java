@@ -18,7 +18,7 @@ public class ProdListReqParamsVo {
 	private String prodName;
 	
 	// 分类名字。可以为空，为空时表示所有分类
-	private String cate;
+	private Integer cateId;
 	
 	// 最低价格。不允许为负数，且 minPrice <= maxPrice 
 	private Double minPrice;
@@ -31,18 +31,18 @@ public class ProdListReqParamsVo {
 	 */
 	public String joinUrlParams() {
 		StringBuilder urlParamsStr = new StringBuilder("");
-		if (prodName != null) { // 可以为空
-			urlParamsStr.append("&prodName=").append(prodName);
-		}
-		if (cate != null) {
-			String cateTmp = cate;
+		if (prodName != null) { // 可以为空串
+			String encodedProdName = prodName;
 			try {
 				// 对中文进行url编码
-				cateTmp = URLEncoder.encode(cate, "UTF-8");
+				encodedProdName = URLEncoder.encode(prodName, "UTF-8");
 			} catch (UnsupportedEncodingException e) {
 				e.printStackTrace();
 			}
-			urlParamsStr.append("&cate=").append(cateTmp);
+			urlParamsStr.append("&prodName=").append(encodedProdName);
+		}
+		if (!ObjectUtils.isEmpty(cateId)) { 
+			urlParamsStr.append("&cateId=").append(cateId);
 		}
 		if (!ObjectUtils.isEmpty(minPrice)) {
 			urlParamsStr.append("&minPrice=").append(minPrice);
@@ -62,12 +62,12 @@ public class ProdListReqParamsVo {
 		this.prodName = prodName;
 	}
 
-	public String getCate() {
-		return cate;
+	public Integer getCateId() {
+		return cateId;
 	}
 
-	public void setCate(String cate) {
-		this.cate = cate;
+	public void setCateId(Integer cateId) {
+		this.cateId = cateId;
 	}
 
 	public Double getMinPrice() {
@@ -86,10 +86,4 @@ public class ProdListReqParamsVo {
 		this.maxPrice = maxPrice;
 	}
 
-	@Override
-	public String toString() {
-		return "ProdListReqParamsVo [goodsName=" + prodName + ", cate=" + cate + ", minPrice=" + minPrice
-				+ ", maxPrice=" + maxPrice + "]";
-	}
-	
 }

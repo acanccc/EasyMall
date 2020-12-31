@@ -22,10 +22,10 @@
 			<form method="post" action="${pageContext.request.contextPath}/prodlist">
 				<span class="input_span">商品名：<input type="text" name="prodName" value="${params.prodName}"/></span>
 				<span class="input_span">商品种类：</span>
-				<select name="cate">
-					<option value="">不限</option>
+				<select name="cateId">
+					<option value="0">不限</option>
 					<c:forEach items="${cates}" var="cate">
-						<option value="${cate.id}">${cate.name } <c:if test="${cate==params.cate}">selected</c:if>>${cate}</option>
+						<option value="${cate.id}" <c:if test="${cate.id==params.cateId}">selected</c:if> >${cate.name}</option>
 					</c:forEach>
 
 				</select>

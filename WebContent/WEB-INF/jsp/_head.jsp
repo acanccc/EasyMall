@@ -43,13 +43,13 @@
 			<ul>
 				<li><a href="#">首页</a></li>
 				<li><a href="${pageContext.request.contextPath }/prodlist">全部商品</a></li>
-				<li><a href="${ pageContext.request.contextPath }/prodlist?cate=1">手机数码</a></li>
-				<li><a href="${ pageContext.request.contextPath }/prodlist?cate=2">日用百货</a></li>
-				<li><a href="${ pageContext.request.contextPath }/prodlist?cate=3">家用电器</a></li>
-				<li><a href="${ pageContext.request.contextPath }/prodlist?cate=4">图书杂志</a></li>
-				<li><a href="${ pageContext.request.contextPath }/prodlist?cate=5">服装服饰</a></li>
-				<li><a href="${ pageContext.request.contextPath }/prodlist?cate=6">床上用品</a></li>
-				<li><a href="${ pageContext.request.contextPath }/prodlist?cate=7">汽车用品</a></li>
+				<li><a href="${ pageContext.request.contextPath }/prodlist?cateId=1">手机数码</a></li>
+				<li><a href="${ pageContext.request.contextPath }/prodlist?cateId=2">日用百货</a></li>
+				<li><a href="${ pageContext.request.contextPath }/prodlist?cateId=3">家用电器</a></li>
+				<li><a href="${ pageContext.request.contextPath }/prodlist?cateId=4">图书杂志</a></li>
+				<li><a href="${ pageContext.request.contextPath }/prodlist?cateId=5">服装服饰</a></li>
+				<li><a href="${ pageContext.request.contextPath }/prodlist?cateId=6">床上用品</a></li>
+				<li><a href="${ pageContext.request.contextPath }/prodlist?cateId=7">汽车用品</a></li>
 			</ul>
 		</div>
 	</div>

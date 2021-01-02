@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/index.css"/>
 		<title>欢迎光临EasyMall</title>
 	</head>
+	
 	<body>
 	<!-- 将头部(_head.jsp)包含进来 -->
 	<jsp:include page="/WEB-INF/jsp/_head.jsp"/>
@@ -46,5 +47,13 @@
 		</div>
 		<!-- 将头部(_foot.jsp)包含进来 -->
 	<jsp:include page="/WEB-INF/jsp/_foot.jsp"/>
+	
+	<script>
+		window.onload = function() {
+			var arr = ${arr};
+			//var arr1 = ['abc', 'def'];
+			console.log(typeof(arr));
+		}
+	</script>
 	</body>
 </html>

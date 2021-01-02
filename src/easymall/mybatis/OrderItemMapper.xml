@@ -14,9 +14,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		p.name prodName,
   		p.price,
   		p.imgurl imgUrl,
-  		oi.buynum buyNum
-  	from orderitem oi, products p
-  	where oi.order_id=#{orderId} and oi.product_id=p.id;
+  		oi.buynum buyNum,
+  		c.name cateName
+  	from orderitem oi, products p, category c
+  	where oi.order_id=#{orderId} and oi.product_id=p.id and p.category=c.id
   </select>
 
 

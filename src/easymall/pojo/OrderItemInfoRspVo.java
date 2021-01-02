@@ -23,18 +23,21 @@ public class OrderItemInfoRspVo implements Serializable {
 	@Excel(name = "商品名称", orderNum = "0")
 	private String prodName; 
 	
+	@Excel(name = "所属分类", orderNum = "1")
+	private String cateName;
+	
 	// 商品封面图
 	// type =2 该字段类型为图片,imageType=1 (默认可以不填),表示从file读取
 	// 字段类型是个字符串类型 可以用相对路径也可以用绝对路径,绝对路径优先依次获取
-	@Excel(name = "商品主图", type = 2, width = 12, orderNum = "1")
+	@Excel(name = "商品主图", type = 2, width = 12, orderNum = "2")
 	private String imgUrl;
 	
 	// 商品单价
-	@Excel(name = "商品单价", orderNum = "2")
+	@Excel(name = "商品单价", orderNum = "3")
 	private Double price;
 	
 	// 购买数量
-	@Excel(name = "购买数量", orderNum = "3")
+	@Excel(name = "购买数量", orderNum = "4")
 	private Integer buyNum;
 
 	public String getProdId() {
@@ -51,6 +54,14 @@ public class OrderItemInfoRspVo implements Serializable {
 
 	public void setProdName(String prodName) {
 		this.prodName = prodName;
+	}
+
+	public String getCateName() {
+		return cateName;
+	}
+
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
 	}
 
 	public String getImgUrl() {

@@ -1,8 +1,12 @@
 package easymall.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,7 +22,12 @@ public class IndexController  {
 	 * @return
 	 */
 	@GetMapping({"/", "/index", "/index/index"})
-	public String index() {
+	public String index(Model model) {
+		
+		List<String> arr = new ArrayList<>();
+		arr.add("test");
+		arr.add("ppust");
+		model.addAttribute("arr", arr.toString());
 		return "index";
 	}
 

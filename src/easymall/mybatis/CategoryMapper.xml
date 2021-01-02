@@ -29,4 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	where category.id=products.category 
     	group by products.category;
 	</select>
+	<select id="findNameById" parameterType="Integer" resultType="String">
+		select name from category where id=#{id}
+	</select>
 </mapper>

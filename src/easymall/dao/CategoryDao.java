@@ -20,4 +20,5 @@ public interface CategoryDao {
 	Category findcategory(String name);
 	Integer findcategoryIdByName(String name);
 	List<Kind> findKind();
+	String findNameById(Integer id);
 }

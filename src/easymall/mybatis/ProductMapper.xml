@@ -61,5 +61,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findByImgurl" parameterType="String" resultType="easymall.po.Products">
 		select * from products where imgurl=#{imgurl}
 	</select>
-    
+	
+	<select id="allProducts" resultType="easymall.po.Products">
+	    select * from products
+	</select>
+	
+	<delete id="delProdById" parameterType="String">
+		delete from products where id=#{id}
+	</delete>
+    <update id="updateProdById" parameterType="easymall.po.Products">
+    	update products
+    		set name=#{name},price=#{price},category=#{category},pnum=#{pnum},imgurl=#{imgurl},description=#{description}
+    		where id=#{id}
+    </update>
+    <select id="findUrlById" parameterType="String" resultType="String">
+    	select imgurl from products where id=#{id}
+    </select>
 </mapper>

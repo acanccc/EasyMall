@@ -22,6 +22,8 @@ import easymall.po.Orders;
 import easymall.po.Products;
 import easymall.po.User;
 import easymall.pojo.MyProducts;
+import easymall.pojo.MyProducts2;
+import easymall.pojo.MyProducts3;
 import easymall.pojo.OrderInfo;
 import easymall.service.AdminService;
 import easymall.service.CartService;
@@ -101,21 +103,50 @@ public class AdminController {
 		return "redirect:/admin/showorder";
 	}
 	
+	@RequestMapping("/showprod")
+	public String showprod(Model model) {
+		List<MyProducts2> products=productsService.allProducts();
+		model.addAttribute("products", products);
+		return "adminproduct";
+	}
+	
+	@RequestMapping("/delprod")
+	public String delprod(String id,Model model) {
+		productsService.delProdById(id);
+		return "redirect:/admin/showprod";
+	}
+	
 	@RequestMapping("/addprod")
 	public String addprod(Model model) {
 //		查找商品表中所有的商品类别
 		List<Category> categorys=productsService.allcategorys();
 		model.addAttribute("categorys",categorys);
 		model.addAttribute("myproducts",new MyProducts());
-		return "adminproduct";
+		return "adminaddprod";
 	}
 	
 	@RequestMapping("/save")
 	public String save(@Valid @ModelAttribute MyProducts myproducts, HttpServletRequest request,Model model)
 	throws Exception{
-		String msg=productsService.save(myproducts,request);
-		model.addAttribute("msg",msg);
-		return "redirect:/admin/addprod";
+		productsService.save(myproducts,request);
+		return "redirect:/admin/showprod";
+	}
+	
+	@RequestMapping("updateprod")
+	public String updateprod(String id,Model model) {
+		MyProducts2 product=productsService.findProductById(id);
+		List<Category> categorys=productsService.allcategorys();
+		model.addAttribute("categorys",categorys);
+		model.addAttribute("product",product);
+		model.addAttribute("myproducts",new MyProducts3());
+		return "adminupdateprod";
+	}
+	
+	@RequestMapping("/update")
+	public String update(@Valid @ModelAttribute MyProducts3 myProducts3,HttpServletRequest request,Model model)
+	throws Exception{
+		productsService.updateProdById(myProducts3, request);
+		return "redirect:/admin/showprod";
 	}
 	
 }

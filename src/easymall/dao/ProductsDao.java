@@ -26,5 +26,13 @@ public interface ProductsDao {
 	public void save(Products products);
 	
 	public Object findByImgurl(String imgurl);
+	
+	public List<Products> allProducts();
+	
+	public void delProdById(String id);
+	
+	public void updateProdById(Products products);
+	
+	public String findUrlById(String id);
 
 }

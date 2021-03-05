@@ -1,5 +1,4 @@
 # EasyMall
-javaweb大作业
 
 1.新增后台登录和后台主页
   数据库新增管理员用户表admin
